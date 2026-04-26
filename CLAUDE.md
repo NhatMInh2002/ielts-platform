@@ -8,7 +8,7 @@ A data-driven, AI-powered IELTS learning platform to help students reach 7.5+ th
 - **State Management:** Zustand (client state), React Query (server state/caching).
 - **Backend/API:** Next.js API Routes (within `app/api/`).
 - **Database & Auth:** Prisma ORM, PostgreSQL (via Supabase), NextAuth.js.
-- **AI Integrations:** Anthropic Claude API (Writing/Speaking feedback), OpenAI Whisper (Speech-to-text).
+- **AI Integrations:** Google Gemini API (Writing/Speaking feedback), OpenAI Whisper (Speech-to-text).
 
 ## 💻 Common Commands
 - **Dev Server:** `npm run dev`
@@ -25,11 +25,11 @@ A data-driven, AI-powered IELTS learning platform to help students reach 7.5+ th
    - `components/ui/` for Shadcn, `components/shared/` for common elements.
    - Separate feature components into `components/listening/`, `components/reading/`, etc.
 4. **Database Workflow:** `prisma/schema.prisma` is the source of truth. Any DB changes must be updated here first.
-5. **AI Feedback:** All AI prompts for evaluating Writing and Speaking must strictly adhere to the 4 official IELTS criteria: Task Achievement/Response, Coherence & Cohesion, Lexical Resource, Grammatical Range & Accuracy.
+5. **AI Feedback:** All AI prompts for evaluating Writing and Speaking must strictly adhere to the 4 official IELTS criteria: Task Achievement/Response, Coherence & Cohesion, Lexical Resource, Grammatical Range & Accuracy. Ensure prompts are optimized for Gemini.
 6. **Typing:** Use strict TypeScript. Avoid `any`. Interfaces/types go to `types/`.
 
 ## 🚀 Current Target: Phase 1 MVP
 - **Priority 1:** Database Schema setup and Authentication (NextAuth + Supabase).
 - **Priority 2:** Listening & Reading UI interface and basic scoring.
-- **Priority 3:** Writing module with Claude AI feedback integration.
-- **Priority 4:** Speaking module with Whisper + Claude.
+- **Priority 3:** Writing module with Google Gemini AI feedback integration.
+- **Priority 4:** Speaking module with Whisper + Gemini.

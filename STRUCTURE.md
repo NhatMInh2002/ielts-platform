@@ -30,7 +30,7 @@ ielts-platform/
 │   └── layout/
 ├── lib/                          # Utilities
 │   ├── supabase.ts
-│   ├── anthropic.ts
+│   ├── gemini.ts
 │   ├── prisma.ts
 │   └── utils.ts
 ├── hooks/                        # Custom React hooks

@@ -47,7 +47,7 @@ Authentication: NextAuth.js (Auth.js)
 - JWT-based sessions
 
 AI Integration:
-- Anthropic Claude API (chấm Writing/Speaking, feedback chất lượng)
+- Google Gemini API (chấm Writing/Speaking, feedback chất lượng)
 - OpenAI Whisper API (Speech-to-text cho Speaking)
 - Text-to-Speech: ElevenLabs/Google TTS (Speaking samples)
 ```
@@ -232,7 +232,7 @@ Word count: 750-950 words per passage
 
 ### 3.2 AI Feedback System (Core differentiation)
 
-**Sử dụng Claude API để chấm bài với tiêu chí IELTS chính thức:**
+**Sử dụng Gemini API để chấm bài với tiêu chí IELTS chính thức:**
 
 ```javascript
 Prompt engineering cho AI:
@@ -368,11 +368,11 @@ Part 3: Two-way Discussion (4-5 min)
 - More complex, analytical questions
 ```
 
-### 4.2 AI Assessment (Using Claude + Whisper)
+### 4.2 AI Assessment (Using Gemini + Whisper)
 
 **Process Flow:**
 1. Record answer → Whisper API (speech-to-text)
-2. Transcript → Claude API (evaluate against IELTS criteria)
+2. Transcript → Gemini API (evaluate against IELTS criteria)
 3. Pronunciation analysis (using phonetic tools)
 4. Generate detailed feedback
 
@@ -741,14 +741,14 @@ Suggests:
 
 **Week 7-9: Writing Module**
 - ✅ Essay submission interface
-- ✅ Claude API integration (AI feedback)
+- ✅ Gemini API integration (AI feedback)
 - ✅ Sample essays library (50 essays)
 - ✅ Word counter, timer
 
 **Week 10-12: Speaking Module**
 - ✅ Voice recording (browser-based)
 - ✅ Whisper API integration (speech-to-text)
-- ✅ Claude API (feedback generation)
+- ✅ Gemini API (feedback generation)
 - ✅ Sample recordings (20 answers)
 
 **Week 13-14: Testing & Launch**
@@ -890,7 +890,7 @@ Suggests:
 ### Budget Estimate (Solo, Phase 1)
 - **Development:** $0 (your time)
 - **Hosting:** $50-100/month (Vercel Pro, Supabase Pro, Cloudflare)
-- **AI APIs:** $200-500/month (Claude API, Whisper API)
+- **AI APIs:** $200-500/month (Gemini API, Whisper API)
 - **Tools:** $50/month (Figma, Posthog, Sentry)
 - **Content:** $500-1000 (freelance IELTS teachers for question bank)
 - **Total:** ~$800-1,650/month
@@ -959,13 +959,13 @@ Suggests:
 
 ### Week 7-8: Writing Module
 - [ ] Build essay editor
-- [ ] Integrate Claude API
+- [ ] Integrate Gemini API
 - [ ] Implement feedback display
 - [ ] Add sample essays
 
 ### Week 9-10: Speaking Module
 - [ ] Build voice recorder
-- [ ] Integrate Whisper + Claude APIs
+- [ ] Integrate Whisper + Gemini APIs
 - [ ] Implement feedback display
 - [ ] Add sample recordings
 
@@ -1114,7 +1114,7 @@ export async function GET(req: Request, { params }: { params: { id: string } }) 
 export async function POST(req: Request) {
   const { essay, task_type } = await req.json();
   
-  // Call Claude API
+  // Call Gemini API
   const feedback = await generateWritingFeedback(essay, task_type);
   
   // Save to database
