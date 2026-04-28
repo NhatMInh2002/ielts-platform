@@ -12,14 +12,27 @@ export async function login(formData: FormData) {
     password: formData.get("password") as string,
   };
 
-  const { error } = await supabase.auth.signInWithPassword(data);
+  const { data: authData, error } = await supabase.auth.signInWithPassword(data);
 
   if (error) {
     return { error: error.message };
   }
 
+  // Kiểm tra Role của người dùng
+  const { data: profile } = await supabase
+    .from("profiles")
+    .select("role")
+    .eq("id", authData.user.id)
+    .single();
+
   revalidatePath("/", "layout");
-  redirect("/dashboard");
+
+  // Điều hướng dựa trên Role
+  if (profile?.role === "admin") {
+    redirect("/admin/users");
+  } else {
+    redirect("/dashboard");
+  }
 }
 
 export async function signup(formData: FormData) {
@@ -35,10 +48,18 @@ export async function signup(formData: FormData) {
     },
   };
 
-  const { error } = await supabase.auth.signUp(data);
-
+  const { data: signUpData, error } = await supabase.auth.signUp(data);
+  
   if (error) {
     return { error: error.message };
+  }
+
+  // Nếu người dùng cần xác nhận email, session sẽ là null
+  if (!signUpData.session) {
+    return { 
+      success: true, 
+      message: "Vui lòng kiểm tra email của bạn để xác thực tài khoản trước khi đăng nhập." 
+    };
   }
 
   revalidatePath("/", "layout");
