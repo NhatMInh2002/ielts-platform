@@ -7,7 +7,7 @@ const genAI = new GoogleGenerativeAI(process.env.GOOGLE_GENERATIVE_AI_API_KEY ||
  */
 export async function scoreWritingTask(testTitle: string, question: string, essay: string) {
   try {
-    const model = genAI.getGenerativeModel({ model: "gemini-pro" });
+    const model = genAI.getGenerativeModel({ model: "gemini-1.5-pro" });
 
     const prompt = `
       You are an expert IELTS Writing Examiner. 
@@ -59,7 +59,7 @@ export async function scoreWritingTask(testTitle: string, question: string, essa
  */
 export async function generateIELTSTest(type: "reading" | "writing", topicOrUrl: string) {
   try {
-    const model = genAI.getGenerativeModel({ model: "gemini-pro" });
+    const model = genAI.getGenerativeModel({ model: "gemini-1.5-pro" });
 
     const prompt = type === "reading" 
       ? `Create a complete IELTS Academic Reading Test. 
@@ -102,7 +102,7 @@ export async function generateIELTSTest(type: "reading" | "writing", topicOrUrl:
  */
 export async function parseIELTSFromHtml(type: "reading" | "writing", htmlContent: string) {
   try {
-    const model = genAI.getGenerativeModel({ model: "gemini-pro" });
+    const model = genAI.getGenerativeModel({ model: "gemini-1.5-pro" });
 
     const prompt = `Extract an IELTS ${type} test from the following raw text/HTML content.
          RAW CONTENT: ${htmlContent.substring(0, 15000)}
